@@ -67,9 +67,30 @@ namespace BL.Empaques
                 return resultado;
             }
 
+            CalcularExistencia(factura);
+
             _contexto.SaveChanges();
             resultado.Exitoso = true;
             return resultado;
+        }
+
+        private void CalcularExistencia(Factura factura)
+        {
+            foreach (var detalle in factura.FacturaDetalle)
+            {
+                var producto = _contexto.Productos.Find(detalle.ProductoId);
+                if (producto != null)
+                {
+                    if (factura.Activo == true)
+                    {
+                        producto.Existencia = producto.Existencia - detalle.Cantidad;
+                    }
+                    else
+                    {
+                        producto.Existencia = producto.Existencia + detalle.Cantidad;
+                    }
+                }
+            }
         }
 
         private Resultado Validar(Factura factura)
@@ -143,6 +164,23 @@ namespace BL.Empaques
                 factura.Impuesto = subtotal * 0.15;
                 factura.Total = subtotal + factura.Impuesto;
             }
+        }
+
+        public bool AnularFactura(int id)
+        {
+            foreach (var factura in ListaFacturas)
+            {
+                if (factura.Id == id)
+                {
+                    factura.Activo = false;
+
+                    CalcularExistencia(factura);
+
+                    _contexto.SaveChanges();
+                    return true;
+                }
+            }
+            return false;
         }
 
     }
