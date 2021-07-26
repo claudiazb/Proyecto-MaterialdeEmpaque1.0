@@ -10,7 +10,7 @@ namespace BL.Empaques
 {
     public class Contexto: DbContext
     {
-        public Contexto(): base("MaterialesDeEmpaque")
+        public Contexto(): base("MaterialDeEmpaque")
         {
 
         }
@@ -26,5 +26,6 @@ namespace BL.Empaques
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Tipo> Tipos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Factura> Facturas { get; set; }
     }
 }

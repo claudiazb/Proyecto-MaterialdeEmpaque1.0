@@ -42,11 +42,11 @@ namespace Win.EmpaquesZamora
             formClientes.Show();
         }
 
-        private void facturacionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void facturaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var formFacturacion = new FormFacturacion();
-            formFacturacion.MdiParent = this;
-            formFacturacion.Show();
+            var formFactura = new FormFactura();
+            formFactura.MdiParent = this;
+            formFactura.Show();
         }
 
         private void FormMenu_Load(object sender, EventArgs e)
