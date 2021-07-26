@@ -100,6 +100,14 @@ namespace Win.EmpaquesZamora
         {
             e.ThrowException = false;
         }
+
+        private void facturaDetalleDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var factura = (Factura)listaFacturasBindingSource.Current;
+            _facturaBL.CalcularFactura(factura);
+
+            listaFacturasBindingSource.ResetBindings(false);
+        }
     }
 }
 
