@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL.Empaques;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -10,6 +11,7 @@ namespace Win.EmpaquesZamora
 {
     static class Program
     {
+        public static Usuario UsuarioLogueado;
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>

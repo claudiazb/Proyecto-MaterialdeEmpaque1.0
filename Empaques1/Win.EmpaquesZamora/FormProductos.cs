@@ -146,5 +146,32 @@ namespace Win.EmpaquesZamora
         {
             fotoPictureBox.Image = null;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Buscar();
+        }
+
+        private void Buscar()
+        {
+            var busqueda = textBox1.Text;
+
+            if(busqueda != "")
+            {
+                listaProductosBindingSource.DataSource = _productos.ObtenerProductos(busqueda);
+            }
+            else
+            {
+                listaProductosBindingSource.DataSource = _productos.ObtenerProductos();
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                Buscar();
+            }
+        }
     }
 }

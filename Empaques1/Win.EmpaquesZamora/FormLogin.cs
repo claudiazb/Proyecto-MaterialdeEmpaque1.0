@@ -32,10 +32,12 @@ namespace Win.EmpaquesZamora
             button1.Text = " Verificando ... ";
             Application.DoEvents();
 
-            var resultado = _seguridad.Autorizar(usuario, contrasena);
+            var usuarioDB = _seguridad.Autorizar(usuario, contrasena);
 
-            if (resultado == true)
+            if (usuarioDB != null)
             {
+                Program.UsuarioLogueado = usuarioDB;
+
                 this.Close();
             }
             else
@@ -45,6 +47,22 @@ namespace Win.EmpaquesZamora
 
             button1.Enabled = true;
             button1.Text = "Aceptar";
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && !String.IsNullOrEmpty(textBox1.Text))
+            {
+                textBox2.Focus();
+            }
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && !String.IsNullOrEmpty(textBox2.Text))
+            {
+                button1.PerformClick();
+            }
         }
     }
 }

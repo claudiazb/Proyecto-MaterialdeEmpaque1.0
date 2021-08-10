@@ -18,6 +18,12 @@ namespace BL.Empaques
 
             contexto.Usuarios.Add(usuarioAdmin);
 
+            var usuarioCaja = new Usuario();
+            usuarioCaja.Nombre = "caja";
+            usuarioCaja.Contrasena = "456";
+
+            contexto.Usuarios.Add(usuarioCaja);
+
             var categoria1 = new  Categoria();
             categoria1.Descripcion = "Alimentos";
             contexto.Categorias.Add(categoria1);
